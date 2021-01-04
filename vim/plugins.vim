@@ -6,7 +6,6 @@ call plug#begin('~/.vim/bundle')
 
 " Define bundles via Github repos
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'skwp/vim-colors-solarized'
 Plug 'scrooloose/nerdtree' " file explorer
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy finder
 Plug 'pbrisbin/vim-mkdir' " create folder if it doesn't exist
@@ -28,6 +27,7 @@ Plug 'rking/ag.vim'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-repeat'
+Plug 'vim-vdebug/vdebug'
 
 if filereadable(expand("~/.plugins.vim.local"))
   source ~/.plugins.vim.local

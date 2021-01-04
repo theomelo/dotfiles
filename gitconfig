@@ -123,3 +123,6 @@
   enabled = true
 [include]
   path = ~/.gitconfig.local
+[user]
+	email = 9499829+theomelo@users.noreply.github.com
+	name = Theo Melo

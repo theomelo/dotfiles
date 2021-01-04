@@ -1,11 +1,11 @@
 # Based on Skwp's aliases
 # https://raw.githubusercontent.com/skwp/dotfiles/997d36bef991652dd436c076e57d8f00c49f4994/zsh/aliases.zsh
-ccdf=$HOME/.cc_dotfiles
 
 # global
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
+alias reload='source ~/.zshrc'
 
 # PS
 alias psa="ps aux"
@@ -36,8 +36,8 @@ alias lsg='ll | grep'
 alias lag='la | grep'
 
 # Alias Editing
-alias ae='vim $ccdf/aliases' #alias edit
-alias ar='source $ccdf/aliases'  #alias reload
+alias ae='vim $HOME/.dotfiles/aliases' #alias edit
+alias ar='source $HOME/.dotfiles/aliases'  #alias reload
 
 # vim using
 mvim --version > /dev/null 2>&1
@@ -162,7 +162,7 @@ alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall F
 # Homebrew
 alias brewu='brew update && brew upgrade && brew cleanup && brew prune && brew doctor'
 
-# your aliases
+# local aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
 
 # vim: ft=zsh
