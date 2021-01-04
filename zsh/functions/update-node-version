@@ -1,0 +1,27 @@
+# Run 'nvm use' automatically every time there's
+# a .nvmrc file in the directory. Also, revert to default
+# version when entering a directory without .nvmrc
+
+function update-node-version() {
+  if [[ -f ".nvmrc" ]]; then
+      VERSION=$(cat .nvmrc)
+      nvm use $VERSION
+      if [  $? != 0  ]
+      then
+        nvm install $VERSION
+        nvm use $VERSION
+      fi
+      NVM_DIRTY=true
+  elif [[ $NVM_DIRTY = true ]]; then
+      nvm use default
+      if [  $? != 0  ]
+      then
+        nvm install default
+        nvm use default
+      fi
+      NVM_DIRTY=false
+  fi
+  if [[ $PWD == $PREV_PWD ]]; then
+      return
+  fi
+}
