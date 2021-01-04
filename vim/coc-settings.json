@@ -1,0 +1,9 @@
+{
+  "languageserver": {
+    "ruby-lsp": {
+      "command": "ruby-lsp",
+      "filetypes": ["ruby"],
+      "rootPatterns": ["Gemfile", ".git"]
+    }
+  }
+}

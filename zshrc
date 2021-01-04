@@ -1,4 +1,9 @@
 setopt promptsubst
+# setopt PROMPT_SUBST
+
+# Autoload custom functions
+fpath=( ~/.zsh/functions "${fpath[@]}" )
+autoload -Uz $fpath[1]/*(.:t)
 
 # load our own completion functions
 fpath=(~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
@@ -55,23 +60,29 @@ set -o nobeep # no annoying beeps
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-# Peepcode theme to make your terminal simple and beautiful
-source ~/.zsh/themes/peepcode.theme
-
-# Zsh syntax highlight
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 TERM=screen-256color
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
-# Your secrets env var
+# Local secrets env var
 [[ -f ~/.secrets ]] && source ~/.secrets
 
 setopt interactivecomments
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm"  ]] && source "$HOME/.rvm/scripts/rvm"
+# Set Direnv
+eval "$(direnv hook zsh)"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# Load FuzzyFinder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Starship configuration
+eval "$(starship init zsh)"
+
+# add local bin to PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+# add mise
+eval "$(mise activate zsh)"
+
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

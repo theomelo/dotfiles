@@ -95,3 +95,9 @@ map <Leader>ct :!ctags -R .<CR>
 "grep the current word using K (mnemonic Kurrent)
 nnoremap <silent> K :Ag <cword><CR>
 
+" Coc.vim
+nmap <C-LeftMouse> <LeftMouse><Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)

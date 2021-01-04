@@ -2,7 +2,7 @@ require 'rake'
 
 desc 'Install Campus Code Dotfile in your machine'
 task :install do
-  puts "Thank you for choose Campus Code Dotfiles (cc_dotfiles)"
+  puts "Thank you for choose Campus Code Dotfiles (dotfiles)"
 
   install_files(Dir.glob([
     "aliases",
@@ -23,7 +23,7 @@ task :install do
 
   install_vim_plugins
 
-  install_zsh_syntax_highlighting
+  #install_zsh_syntax_highlighting
 
   change_shell
 end
@@ -40,7 +40,7 @@ def change_shell
 end
 
 def install_zsh_syntax_highlighting
-  unless File.exists?("#{ENV["HOME"]}/.zsh-syntax-highlighting")
+  unless File.exist?("#{ENV["HOME"]}/.zsh-syntax-highlighting")
     run_command %{ git clone --depth=1 git://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh-syntax-highlighting }
   end
 end
@@ -51,7 +51,7 @@ def install_files(files)
     source = "#{ENV["PWD"]}/#{f}"
     file = "#{ENV["HOME"]}/.#{file_name}"
 
-    if File.exists?(file)
+    if File.exist?(file)
       puts "Moving #{file} to #{file}.bkp"
       run_command %{ mv #{file} #{file}.bkp }
     end
@@ -64,8 +64,8 @@ def install_fonts
   puts "======================================================"
   puts "Installing patched fonts for Powerline/Lightline."
   puts "======================================================"
-  run_command %{ cp -f $HOME/.cc_dotfiles/fonts/* $HOME/Library/Fonts } if macos?
-  run_command %{ mkdir -p ~/.fonts && cp ~/.cc_dotfiles/fonts/* ~/.fonts && fc-cache -vf ~/.fonts } if linux?
+  run_command %{ cp -f $HOME/.dotfiles/fonts/* $HOME/Library/Fonts } if macos?
+  run_command %{ mkdir -p ~/.fonts && cp ~/.dotfiles/fonts/* ~/.fonts && fc-cache -vf ~/.fonts } if linux?
   puts
 end
 
@@ -83,8 +83,8 @@ def linux?
 end
 
 def install_prereqs
-  run_command %{ $HOME/.cc_dotfiles/mac.sh } if macos?
-  run_command %{ $HOME/.cc_dotfiles/ubuntu.sh } if linux?
+  run_command %{ $HOME/.dotfiles/mac.sh } if macos?
+  run_command %{ $HOME/.dotfiles/ubuntu.sh } if linux?
 end
 
 def verify_pre_reqs

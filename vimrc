@@ -149,7 +149,7 @@ endif
 let g:solarized_termtrans=1
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme abstract
 
 if filereadable(expand("./bin/rspec"))
   let g:rspec_command = "VtrSendCommandToRunner! ./bin/rspec {spec}"
