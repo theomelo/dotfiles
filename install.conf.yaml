@@ -1,0 +1,38 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- create:
+  - ~/.fonts
+
+- link:
+    ~/.aliases:
+      path: aliases
+      create: true
+    ~/.fonts:
+      path: fonts
+      create: true
+    ~/.gitconfig:
+      path: gitconfig
+      create: true
+      force: true
+    ~/.zsh:
+      path: zsh
+      create: true
+    ~/.zshenv:
+      path: zshenv
+      create: true
+    ~/.zshrc:
+      path: zshrc
+      create: true
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  - chsh -s /usr/bin/zsh
+  -
+    command: ./install.sh
+    stdin: true
+    stderr: true
+    stdout: true
