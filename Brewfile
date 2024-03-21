@@ -17,6 +17,7 @@ BREW_PACKAGES = [
   'the_silver_searcher',
   'tmux',
   'direnv',
+  'bat',
   'fzf',
   'ctags'
 ].freeze
