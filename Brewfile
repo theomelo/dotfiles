@@ -20,7 +20,8 @@ BREW_PACKAGES = [
   'bat',
   'fzf',
   'ctags',
-  'ripgrep'
+  'ripgrep',
+  'stats'
 ].freeze
 BREW_PACKAGES.each do |package|
   brew package unless File.directory?("#{BREW_PATH}/#{package}")
