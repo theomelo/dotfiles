@@ -12,6 +12,7 @@ end
 
 BREW_PATH = '/opt/homebrew/Cellar'
 BREW_PACKAGES = [
+  'zsh-syntax-highlighting',
   'starship' ,
   'the_silver_searcher',
   'tmux',
