@@ -56,7 +56,7 @@ set -o nobeep # no annoying beeps
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # Zsh syntax highlighting
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
