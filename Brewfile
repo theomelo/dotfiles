@@ -4,7 +4,9 @@ CASK_PATH = '/opt/homebrew/Caskroom'
 CASK_PACKAGES = [
   'dbeaver-community',
   'iterm2',
-  '1password'
+  '1password',
+  'hiddenbar',
+  'stats'
 ].freeze
 CASK_PACKAGES.each do |package|
   cask package unless File.directory?("#{CASK_PATH}/#{package}")
@@ -20,8 +22,7 @@ BREW_PACKAGES = [
   'bat',
   'fzf',
   'ctags',
-  'ripgrep',
-  'stats'
+  'ripgrep',  
 ].freeze
 BREW_PACKAGES.each do |package|
   brew package unless File.directory?("#{BREW_PATH}/#{package}")
