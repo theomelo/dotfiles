@@ -4,6 +4,7 @@ CASK_PATH = '/opt/homebrew/Caskroom'
 CASK_PACKAGES = [
   'dbeaver-community',
   'iterm2',
+  'actionlint',
   '1password',
   'hiddenbar',
   'stats'
