@@ -1,44 +1,34 @@
 #!/bin/sh
+# Dev-container dotfiles: symlink configs, install vim/ag/starship if missing.
+set -e
+cd "$(dirname "$0")"
+DIR=$PWD
 
-if [ ! -d "$HOME/.dotfiles" ]
-then
-  echo "Installing Dotfiles"
-  echo "We'll install:"
-  echo "  - tmux"
-  echo "  - silver searcher"
-  echo "  - zsh"
-  echo "  - vim (vim-gnome | macvim)"
-  echo "  - google-chrome (mac)"
-  echo "  - iterm2 (mac)"
-  echo "  - atom (mac)"
+ln -sfn "$DIR/bashrc" ~/.bashrc
+ln -sfn "$DIR/inputrc" ~/.inputrc
+ln -sfn "$DIR/aliases" ~/.aliases
+ln -sfn "$DIR/vimrc" ~/.vimrc
+ln -sfn "$DIR/vim" ~/.vim
 
-  case "$(uname -s)" in
-    Linux)
-      sudo apt-get install -y git curl gnupg build-essential
-      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-      curl -sSL https://get.rvm.io | bash -s stable --ruby
-      sudo usermod -a -G rvm `whoami`
-      sudo apt-get install ruby
-      ;;
-    Darwin )
-      gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-      curl -sSL https://get.rvm.io | bash -s stable --ruby
-      sudo usermod -a -G rvm `whoami`
-      ;;
-    CYGWIN* | MSYS*)
-      echo 'You are using a Windows machine which is not recommended to use with our' \
-           ' dotfiles.'
-      echo 'You can clone our repository and install it manually.'
-      return
-      ;;
-    *)
-      echo 'Operational system not recognized, aborting installation'
-      return
-      ;;
-  esac
-  git clone --depth=10 https://github.com/theomelo/dotfiles.git "$HOME/.dotfiles"
-  cd "$HOME/.dotfiles"
-  rake install
-else
-  echo "Dotfiles are already installed."
+SUDO=
+[ "$(id -u)" = 0 ] || ! command -v sudo >/dev/null || SUDO=sudo
+
+if ! command -v vim >/dev/null || ! command -v ag >/dev/null; then
+  if [ "$(id -u)" != 0 ] && [ -z "$SUDO" ]; then
+    echo "WARN: no root/sudo; add vim and ag to the image" >&2
+  elif command -v apt-get >/dev/null; then
+    $SUDO apt-get update -qq && $SUDO apt-get install -y -qq vim silversearcher-ag
+  elif command -v apk >/dev/null; then
+    $SUDO apk add --no-cache vim the_silver_searcher
+  fi
 fi
+
+if ! command -v starship >/dev/null && [ ! -x ~/.local/bin/starship ]; then
+  if command -v curl >/dev/null; then fetch="curl -fsSL"; else fetch="wget -qO-"; fi
+  mkdir -p ~/.local/bin
+  $fetch https://starship.rs/install.sh | sh -s -- -y -b ~/.local/bin ||
+    echo "WARN: starship install failed" >&2
+fi
+
+# coc.nvim needs node and may fail; plugins are optional
+command -v vim >/dev/null && vim -es -u ~/.vimrc +PlugInstall +qall || true

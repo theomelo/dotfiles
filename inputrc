@@ -1,0 +1,13 @@
+set editing-mode vi
+set bell-style none
+
+set keymap vi-insert
+"jj": vi-movement-mode
+"\C-f": vi-movement-mode
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-k": kill-line
+"\C-r": reverse-search-history
+"\C-p": history-search-backward
+"\C-n": yank-last-arg
+"\C-t": "\C-asudo \C-e"

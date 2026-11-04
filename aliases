@@ -2,10 +2,10 @@
 # https://raw.githubusercontent.com/skwp/dotfiles/997d36bef991652dd436c076e57d8f00c49f4994/zsh/aliases.zsh
 
 # global
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias reload='source ~/.zshrc'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias reload='source ~/.bashrc'
 
 # PS
 alias psa="ps aux"
@@ -52,10 +52,10 @@ alias :q='exit'
 # vimrc editing
 alias ve='vim ~/.vimrc'
 
-# zsh profile editing
-alias ze='vim ~/.zshrc'
-alias zr='source ~/.zshrc'
-alias zrl='source ~/.zshrc.local'
+# bash profile editing
+alias be='vim ~/.bashrc'
+alias br='source ~/.bashrc'
+alias brl='source ~/.bashrc.local'
 
 # history
 alias hfull='history 1 -1'
@@ -165,4 +165,4 @@ alias brewu='brew update && brew upgrade && brew cleanup && brew prune && brew d
 # local aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
 
-# vim: ft=zsh
+# vim: ft=sh

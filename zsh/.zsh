@@ -1,1 +1,0 @@
-/home/tmelo/.dotfiles/zsh
